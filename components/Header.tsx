@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className='sticky top-0 header'>
       <div className='container header-wrapper'>
-        <Link href="/">
+        <Link href="/" aria-label='Go to dashboard'>
           <Image 
             src="/assets/icons/logo.svg"
             alt='Signalist logo'
