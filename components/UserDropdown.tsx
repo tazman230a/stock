@@ -3,7 +3,6 @@
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -14,15 +13,15 @@ import { useRouter } from "next/navigation"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {LogOut} from "lucide-react";
 import NavItems from "@/components/NavItem";
+import { signOut } from "@/lib/actions/auth.actions";
 
-const UserDropdown = () => {
+const UserDropdown = ({user}: { user: User }) => {
     const router = useRouter();
 
     const handleSignOut = async () => {
+       await signOut();
         router.push("/sign-in");
     }
-
-    const user = { name: 'Michael Mitchell', email: "michael.mitchell@example.com" };
 
   return (
     <DropdownMenu>
