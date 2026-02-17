@@ -79,23 +79,41 @@ export const validateArticle = (article: RawNewsArticle) =>
 // Get today's date string in YYYY-MM-DD format
 export const getTodayString = () => new Date().toISOString().split('T')[0];
 
-export const formatArticle = (
+export function formatArticle(
+    article: RawNewsArticle,
+    isCompanyNews: true,
+    symbol: string,
+    index?: number
+): MarketNewsArticle;
+export function formatArticle(
+    article: RawNewsArticle,
+    isCompanyNews: false,
+    symbol?: string,
+    index?: number
+): MarketNewsArticle;
+export function formatArticle(
     article: RawNewsArticle,
     isCompanyNews: boolean,
     symbol?: string,
     index: number = 0
-) => ({
-  id: isCompanyNews ? Date.now() + Math.random() : article.id + index,
-  headline: article.headline!.trim(),
-  summary:
-      article.summary!.trim().substring(0, isCompanyNews ? 200 : 150) + '...',
-  source: article.source || (isCompanyNews ? 'Company News' : 'Market News'),
-  url: article.url!,
-  datetime: article.datetime!,
-  image: article.image || '',
-  category: isCompanyNews ? 'company' : article.category || 'general',
-  related: isCompanyNews ? symbol! : article.related || '',
-});
+): MarketNewsArticle {
+  if (isCompanyNews && !symbol) {
+    throw new Error('Symbol is required for company news');
+  }
+
+  return {
+    id: isCompanyNews ? Date.now() + Math.random() : article.id + index,
+    headline: (article.headline || '').trim(),
+    summary:
+        (article.summary || '').trim().substring(0, isCompanyNews ? 200 : 150) + '...',
+    source: article.source || (isCompanyNews ? 'Company News' : 'Market News'),
+    url: article.url || '',
+    datetime: article.datetime || Date.now(),
+    image: article.image || '',
+    category: isCompanyNews ? 'company' : article.category || 'general',
+    related: (isCompanyNews ? symbol : article.related) || '',
+  } as MarketNewsArticle;
+}
 
 export const formatChangePercent = (changePercent?: number) => {
   if (!changePercent) return '';
@@ -116,13 +134,6 @@ export const formatPrice = (price: number) => {
   }).format(price);
 };
 
-export const formatDateToday = new Date().toLocaleDateString('en-US', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  timeZone: 'UTC',
-});
 
 
 export const getAlertText = (alert: Alert) => {

@@ -1,4 +1,4 @@
-import { connectToDatabase } from "./database/mongoose.ts";
+import { connectToDatabase } from "./database/mongoose";
 import dotenv from "dotenv";
 
 dotenv.config();

@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ac167f20-5896-423a-b6b7-43f61c817fdc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/actions/finnhub.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/actions/finnhub.actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/actions/user.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/actions/user.actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/inngest/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/inngest/functions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test-db.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/global.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="54" />
+    <option name="cachedIndexableFilesCount" value="68" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -43,7 +47,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "database",
+    "git-widget-placeholder": "daily-summary",
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
     "junie.onboarding.icon.badge.shown": "true",
@@ -88,6 +92,7 @@
       <updated>1770923061090</updated>
       <workItem from="1770923063348" duration="922000" />
       <workItem from="1771176511680" duration="435000" />
+      <workItem from="1771351639546" duration="1010000" />
     </task>
     <servers />
   </component>
