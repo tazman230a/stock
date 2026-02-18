@@ -2,6 +2,7 @@
 
 import { getDateRange, validateArticle, formatArticle } from '@/lib/utils';
 import { POPULAR_STOCK_SYMBOLS } from '@/lib/constants';
+import { cache } from 'react';
 
 const FINNHUB_BASE_URL = 'https://finnhub.io/api/v1';
 const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY ?? '';
@@ -95,7 +96,7 @@ export async function getNews(symbols?: string[]): Promise<MarketNewsArticle[]> 
   }
 }
 
-export async function searchStocks(query?: string): Promise<StockWithWatchlistStatus[]> {
+export const searchStocks = cache(async (query?: string): Promise<StockWithWatchlistStatus[]> => {
   try {
     const token = process.env.FINNHUB_API_KEY ?? FINNHUB_API_KEY;
     if (!token) {
@@ -174,4 +175,4 @@ export async function searchStocks(query?: string): Promise<StockWithWatchlistSt
     console.error('Error in stock search:', err);
     return [];
   }
-}
+});

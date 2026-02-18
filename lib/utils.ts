@@ -22,7 +22,7 @@ export const formatTimeAgo = (timestamp: number) => {
 };
 
 export function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms)); 
 }
 
 // Formatted string like "$3.10T", "$900.00B", "$25.00M" or "$999,999.99"
@@ -116,7 +116,7 @@ export function formatArticle(
 }
 
 export const formatChangePercent = (changePercent?: number) => {
-  if (!changePercent) return '';
+  if (!changePercent) return '';  
   const sign = changePercent > 0 ? '+' : '';
   return `${sign}${changePercent.toFixed(2)}%`;
 };
