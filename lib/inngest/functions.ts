@@ -4,7 +4,7 @@ import {sendNewsSummaryEmail, sendWelcomeEmail} from "@/lib/nodemailer";
 import {getAllUsersForNewsEmail} from "@/lib/actions/user.actions";
 import { getWatchlistSymbolsByEmail } from "@/lib/actions/watchlist.actions";
 import { getNews } from "@/lib/actions/finnhub.actions";
-import { formatDateToday } from "@/lib/utils";
+import { getFormattedTodayDate } from "@/lib/utils";
 
 export const sendSignUpEmail = inngest.createFunction(
     { id: 'sign-up-email' },
@@ -99,25 +99,20 @@ export const sendDailyNewsSummary = inngest.createFunction(
 
                     userNewsSummaries.push({ user, newsContent });
                 } catch (e) {
-                    console.error('Failed to summarize news for user:', user.id, e);
-                    userNewsSummaries.push({ user, newsContent: null });
-                }
+                    console.error('Failed to summarize news for : ', user.email);
                     userNewsSummaries.push({ user, newsContent: null });
                 }
             }
 
         // Step #4: (placeholder) Send the emails
         await step.run('send-news-emails', async () => {
-                const results = await Promise.allSettled(
+                await Promise.all(
                     userNewsSummaries.map(async ({ user, newsContent}) => {
                         if(!newsContent) return false;
-                        return await sendNewsSummaryEmail({ email: user.email, date: formatDateToday, newsContent })
+
+                        return await sendNewsSummaryEmail({ email: user.email, date: getFormattedTodayDate(), newsContent })
                     })
                 )
-                const failures = results.filter(r => r.status === 'rejected');
-                if (failures.length > 0) {
-                    console.error(`Failed to send ${failures.length} news summary email(s)`);
-                }
             })
 
         return { success: true, message: 'Daily news summary emails sent successfully' }
